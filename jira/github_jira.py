@@ -33,16 +33,7 @@ CLOUD_REPOS = ['ansible-collections/amazon.aws',
 
 g = Github(config['gh_token'])
 jiraconn = JIRA(token_auth=config['jira_token'], server=config['jira_server'])
-
-jira_issues =  []
-count = 0
-# A single call to search_issues returns 50(default) records
-while True:
-  issues = jiraconn.search_issues('project=ACA and labels=github', count)
-  if not issues:
-    break
-  jira_issues.extend(issues)
-  count+=50
+jira_issues = jiraconn.search_issues('project=ACA and labels=github', maxResults=1000)
 
 # Component are resource objects
 prj_components = jiraconn.project_components(project='ACA')
