@@ -85,7 +85,6 @@ for bug in to_create:
         label = 'kubernetes'
         component = ctn_native_comp
 #    if bug.label = 'CI' or 'ci':
-
     issue_template = {
         'project': 'ACA',
         'summary': '[{0}/{1}] {2}'.format(bug.repository.name, bug.number, bug.title),
@@ -95,6 +94,7 @@ for bug in to_create:
         'priority': {'name': 'Undefined'},
         'components': [{'name': component.name}, {'name': 'cloud-content'}],
         'versions':  [{'id': '12398634'}],
+        'customfield_12319275': [{'value': "Cloud Content"}], # This is the `Workstream` field
     }
 #versions = jiraconn.project_versions('ACA')
 #print([v for v in reversed(versions)])
